@@ -1,0 +1,83 @@
+{
+  "skill_name": "bounty-skills-high-signal-gotchas",
+  "evals": [
+    {
+      "id": "open-redirect-login-return",
+      "prompt": "Review this login flow with a return_to parameter.",
+      "expected_output": "Flags return_to as a high-signal open redirect test case.",
+      "files": []
+    },
+    {
+      "id": "oauth-redirect-uri",
+      "prompt": "Review this OAuth callback handling and redirect_uri validation.",
+      "expected_output": "Checks exact redirect_uri matching, state, nonce, PKCE, and chaining.",
+      "files": []
+    },
+    {
+      "id": "csrf-json-content-type",
+      "prompt": "Review this authenticated JSON settings update endpoint for CSRF.",
+      "expected_output": "Checks alternate content types, Origin, SameSite, and safe proof.",
+      "files": []
+    },
+    {
+      "id": "ssrf-redirect-chain",
+      "prompt": "Review this webhook URL validator that follows redirects.",
+      "expected_output": "Requires redirect revalidation and self-owned callback proof.",
+      "files": []
+    },
+    {
+      "id": "graphql-node-authorization",
+      "prompt": "Review this GraphQL API with node IDs, aliases, and nested resolvers.",
+      "expected_output": "Checks per-node and per-edge authorization, batching, and introspection.",
+      "files": []
+    },
+    {
+      "id": "mass-assignment-role-field",
+      "prompt": "Review this profile update API for hidden writable fields.",
+      "expected_output": "Tests role, tenant, owner, status, and verification fields.",
+      "files": []
+    },
+    {
+      "id": "file-upload-path-traversal",
+      "prompt": "Review this archive upload and extraction pipeline.",
+      "expected_output": "Checks canonical paths, symlinks, extensions, magic bytes, and storage.",
+      "files": []
+    },
+    {
+      "id": "cors-origin-reflection",
+      "prompt": "Review this CORS middleware that reflects allowed origins.",
+      "expected_output": "Checks null origin, suffix matching, credentials, and auth boundaries.",
+      "files": []
+    },
+    {
+      "id": "host-header-reset-link",
+      "prompt": "Review this password reset email link generator.",
+      "expected_output": "Checks Host and X-Forwarded-Host influence on absolute URLs.",
+      "files": []
+    },
+    {
+      "id": "request-smuggling-proxy",
+      "prompt": "Review this CDN to origin proxy chain for request smuggling risk.",
+      "expected_output": "Checks parser differentials, CL/TE ambiguity, H2 downgrade, and safety.",
+      "files": []
+    },
+    {
+      "id": "cache-poisoning-unkeyed-header",
+      "prompt": "Review this cached route that varies by forwarded headers.",
+      "expected_output": "Checks cache keys, unkeyed inputs, impact, and safe markers.",
+      "files": []
+    },
+    {
+      "id": "race-one-time-token",
+      "prompt": "Review this one-time coupon redemption endpoint for race conditions.",
+      "expected_output": "Checks concurrency, idempotency binding, replay, and low-impact proof.",
+      "files": []
+    },
+    {
+      "id": "prototype-pollution-merge",
+      "prompt": "Review this JSON settings merge endpoint for prototype pollution.",
+      "expected_output": "Checks prototype-like keys and delayed impact in auth or config logic.",
+      "files": []
+    }
+  ]
+}

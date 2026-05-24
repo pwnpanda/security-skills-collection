@@ -1,0 +1,264 @@
+{
+  "skill_name": "bounty-skills",
+  "evals": [
+    {
+      "id": "injection-filter-review",
+      "skill": "injection",
+      "prompt": "Review this search filter API for injection risk.",
+      "expected_output": "Identifies interpreter boundaries, bypass themes, and safe validation.",
+      "files": []
+    },
+    {
+      "id": "sensitive-data-export",
+      "skill": "sensitive-data-exposure",
+      "prompt": "Review whether this export endpoint leaks sensitive fields.",
+      "expected_output": "Traces sensitive data sinks and requires synthetic or self-owned data.",
+      "files": []
+    },
+    {
+      "id": "xxe-document-upload",
+      "skill": "xml-external-entities",
+      "prompt": "Review this SVG and DOCX upload pipeline for XXE.",
+      "expected_output": "Checks XML parser features, nested formats, and harmless callbacks.",
+      "files": []
+    },
+    {
+      "id": "access-control-tenant",
+      "skill": "broken-access-control",
+      "prompt": "Review this project API for cross-tenant IDOR risk.",
+      "expected_output": "Builds role and tenant matrix using owned accounts and objects.",
+      "files": []
+    },
+    {
+      "id": "security-misconfiguration-cors",
+      "skill": "security-misconfiguration",
+      "prompt": "Review this API gateway and CORS configuration.",
+      "expected_output": "Checks configuration layers and validates exposure without mutation.",
+      "files": []
+    },
+    {
+      "id": "xss-rich-text",
+      "skill": "cross-site-scripting",
+      "prompt": "Review this markdown preview and admin moderation view for XSS.",
+      "expected_output": "Classifies output contexts and validates with harmless owned markers.",
+      "files": []
+    },
+    {
+      "id": "deserialization-session",
+      "skill": "insecure-deserialization",
+      "prompt": "Review this signed session blob for deserialization risk.",
+      "expected_output": "Checks type safety, integrity, purpose binding, and safe state proof.",
+      "files": []
+    },
+    {
+      "id": "crypto-token-signing",
+      "skill": "cryptographic-failures",
+      "prompt": "Review this signed URL token format for crypto failures.",
+      "expected_output": "Checks algorithm, keys, freshness, purpose, and safe owned tokens.",
+      "files": []
+    },
+    {
+      "id": "insecure-design-discount",
+      "skill": "insecure-design",
+      "prompt": "Review this discount approval workflow for design abuse.",
+      "expected_output": "Models workflow invariants and validates low-impact reversible states.",
+      "files": []
+    },
+    {
+      "id": "ssrf-link-preview",
+      "skill": "server-side-request-forgery",
+      "prompt": "Review this link preview service for SSRF.",
+      "expected_output": "Checks URL parsing, redirects, DNS, egress, and self-owned callbacks.",
+      "files": []
+    },
+    {
+      "id": "supply-chain-ci",
+      "skill": "software-supply-chain-failures",
+      "prompt": "Review this CI workflow for supply chain risk.",
+      "expected_output": "Checks registry trust, mutable pins, token permissions, and provenance.",
+      "files": []
+    },
+    {
+      "id": "exceptional-conditions-webhook",
+      "skill": "mishandling-exceptional-conditions",
+      "prompt": "Review this webhook retry path for fail-open states.",
+      "expected_output": "Checks partial failure, idempotency, retry ordering, and safe proof.",
+      "files": []
+    },
+    {
+      "id": "authentication-passkeys-and-link",
+      "skill": "authentication",
+      "prompt": "Review this combined SSO account-linking, passkey enrollment, and password reset flow.",
+      "expected_output": "Separates identity proofing from authentication strength, maps state transitions, tests downgrade paths, and validates with owned accounts only.",
+      "files": []
+    },
+    {
+      "id": "vulnerable-components-reachability",
+      "skill": "vulnerable-components",
+      "prompt": "Review this service inventory: lockfile lists an outdated parser, server banners disclose a framework version.",
+      "expected_output": "Verifies loaded vs declared versions, maps advisory prerequisites to reachable behavior, and avoids destructive exploit code.",
+      "files": []
+    },
+    {
+      "id": "integrity-failures-workflow-state",
+      "skill": "integrity-failures",
+      "prompt": "Review a signed workflow-state blob passed back to the server during multi-step signup.",
+      "expected_output": "Checks producer/consumer trust, purpose/tenant/user binding, replay/restore paths, and tampers harmless owned fields only.",
+      "files": []
+    },
+    {
+      "id": "oast-testing-marker-discipline",
+      "skill": "oast-testing",
+      "prompt": "Plan an OAST campaign against a webhook validator and a stored-comment field.",
+      "expected_output": "Distinguishes Category A preflight from Category B target markers, plans a payload-family x field matrix, and sets up a per-program marker log before any request is sent.",
+      "files": []
+    },
+    {
+      "id": "blind-xss-admin-dashboard",
+      "skill": "blind-xss",
+      "prompt": "Review which stored profile, billing, and integration fields are most likely to render in a privileged admin or support view.",
+      "expected_output": "Names admin/support/email/PDF sinks, plans payload-family per sink, uses unique per-field markers, and stops after one attributable callback.",
+      "files": []
+    },
+    {
+      "id": "blind-ssrf-webhook-redirect",
+      "skill": "blind-ssrf",
+      "prompt": "Plan a blind SSRF test for a webhook URL field that may or may not follow redirects.",
+      "expected_output": "Maps validator vs fetcher parser drift, plans DNS-only and HTTP callback oracles, uses self-owned per-program markers, and avoids internal scanning after first attributable callback.",
+      "files": []
+    },
+    {
+      "id": "blind-ssti-email-template",
+      "skill": "blind-ssti",
+      "prompt": "Plan a blind SSTI test for an invoice-notes field that is later rendered in an emailed PDF.",
+      "expected_output": "Selects engine fingerprint probes per family, picks a blind OAST evaluation payload, attributes via marker log, and stops at evaluation confirmation without file read or env dump.",
+      "files": []
+    },
+    {
+      "id": "cspt-oauth-callback",
+      "skill": "client-side-path-traversal",
+      "prompt": "Review a single-page app whose OAuth callback handler builds a fetch path from response data.",
+      "expected_output": "Traces source-to-sink path concatenation, identifies the diverted endpoint and the client behavior on its response, and validates with owned accounts only.",
+      "files": []
+    },
+    {
+      "id": "open-redirect-login-return-to",
+      "skill": "open-redirect",
+      "prompt": "Review a login flow with a return_to parameter and an OAuth callback registered for a partner client.",
+      "expected_output": "Classifies the redirect primitive, tests allowlist suffix/scheme/userinfo bypasses, and shows whether the bug stands alone or chains into OAuth code theft.",
+      "files": []
+    },
+    {
+      "id": "csrf-json-settings",
+      "skill": "csrf",
+      "prompt": "Review an authenticated JSON settings update endpoint protected by SameSite=Lax cookies and a custom X-Requested-With header.",
+      "expected_output": "Tests alternate content types that bypass preflight, Origin/Referer validation, token binding granularity, and proves with two owned accounts.",
+      "files": []
+    },
+    {
+      "id": "file-upload-archive-extraction",
+      "skill": "file-upload",
+      "prompt": "Review an archive-upload pipeline that extracts ZIPs into a tenant-scoped storage path and runs an image-conversion worker.",
+      "expected_output": "Tests Zip Slip, symlinks, polyglot images, double extensions, and validates with owned tenant-scoped writes.",
+      "files": []
+    },
+    {
+      "id": "path-traversal-attachment-download",
+      "skill": "path-traversal-lfi",
+      "prompt": "Review an attachment-download endpoint that takes a filename parameter validated against a denylist of `../`.",
+      "expected_output": "Tests encoded and mixed separators, parser parity between validator and OS, reads a harmless file as proof, and stops at primitive confirmation.",
+      "files": []
+    },
+    {
+      "id": "command-injection-conversion-worker",
+      "skill": "command-injection",
+      "prompt": "Review a document-conversion worker that pipes user-supplied filenames through ImageMagick and Ghostscript.",
+      "expected_output": "Tests shell metacharacters in filenames, tool-specific argument injection, and validates with OAST callback rather than command output.",
+      "files": []
+    },
+    {
+      "id": "sql-injection-sort-clause",
+      "skill": "sql-injection",
+      "prompt": "Review a reporting API where sort and group-by columns come from request parameters and values are parameterized.",
+      "expected_output": "Identifies identifier vs value protection gap, tests blind boolean and time-based payloads on owned data, and stops at one row of inference.",
+      "files": []
+    },
+    {
+      "id": "nosql-injection-login",
+      "skill": "nosql-injection",
+      "prompt": "Review a JSON login endpoint that forwards the body into a Mongo find() call.",
+      "expected_output": "Tests scalar-to-object shape change, $ne / $regex operator injection, $where evaluation when present, and validates with bounded boolean oracle.",
+      "files": []
+    },
+    {
+      "id": "oauth-oidc-redirect-uri",
+      "skill": "oauth-oidc",
+      "prompt": "Review an OAuth callback handler that registers redirect URIs by prefix match and accepts state as optional.",
+      "expected_output": "Tests prefix-match bypasses, state/PKCE binding, ID token issuer/audience checks, and chains into account takeover with owned client.",
+      "files": []
+    },
+    {
+      "id": "jwt-algorithm-confusion",
+      "skill": "jwt-jose",
+      "prompt": "Review a verifier that accepts both HS256 and RS256 and selects the key by the alg header.",
+      "expected_output": "Tests alg confusion using the issuer's public key as HMAC secret, kid path tricks, and jku/jwk header trust, with self-issued tampered tokens only.",
+      "files": []
+    },
+    {
+      "id": "cors-credentialed-reflection",
+      "skill": "cors-misconfiguration",
+      "prompt": "Review an authenticated /me API that reflects the Origin header and sets Access-Control-Allow-Credentials: true.",
+      "expected_output": "Confirms credentialed cross-origin read, tests null/suffix/substring variants, and proves with two owned accounts.",
+      "files": []
+    },
+    {
+      "id": "host-header-reset-link",
+      "skill": "host-header-injection",
+      "prompt": "Review the password reset flow to determine whether the reset link host can be overridden via Host or X-Forwarded-Host.",
+      "expected_output": "Probes forwarded-host variants, tests which header the framework trusts, and proves with an owned account email containing the attacker domain.",
+      "files": []
+    },
+    {
+      "id": "mass-assignment-profile-role",
+      "skill": "mass-assignment",
+      "prompt": "Review a profile-update mutation in GraphQL and the matching REST endpoint; both bind the request body into a User model.",
+      "expected_output": "Compares write surface to legitimate UI fields, tests role/tenant/owner/verification fields across binding paths, and confirms server-side persistence.",
+      "files": []
+    },
+    {
+      "id": "graphql-node-and-aliases",
+      "skill": "graphql-api-security",
+      "prompt": "Review a GraphQL API with node IDs, batched operations, aliases, and persisted queries.",
+      "expected_output": "Tests per-resolver and per-field authorization, cross-tenant node substitution, alias-based rate-limit bypass, and persisted-query fallback.",
+      "files": []
+    },
+    {
+      "id": "prototype-pollution-merge",
+      "skill": "prototype-pollution",
+      "prompt": "Review a JSON settings merge endpoint that uses lodash.merge on the request body.",
+      "expected_output": "Tests __proto__, constructor.prototype, and bracket-form pollution; identifies one gadget chain that turns pollution into security impact.",
+      "files": []
+    },
+    {
+      "id": "race-coupon-redemption",
+      "skill": "race-conditions",
+      "prompt": "Review a coupon-redemption endpoint that checks single-use server-side before applying credit.",
+      "expected_output": "Builds a small HTTP/2 single-packet harness, tests concurrent redemption, validates with owned coupons, and stops at one reproducible double-spend.",
+      "files": []
+    },
+    {
+      "id": "smuggling-cdn-h2-downgrade",
+      "skill": "request-smuggling",
+      "prompt": "Review a CDN-to-origin path where the CDN terminates HTTP/2 and forwards HTTP/1.1 to the origin.",
+      "expected_output": "Tests H2 downgrade desync, confirms program permission for smuggling tests, proves with owned-URL routing only, and avoids real-user request hijacking.",
+      "files": []
+    },
+    {
+      "id": "cache-poisoning-forwarded-host",
+      "skill": "cache-poisoning",
+      "prompt": "Review a cached marketing page that varies absolute link generation by X-Forwarded-Host.",
+      "expected_output": "Identifies unkeyed input vs cache key, poisons an owned cache key with a unique marker, and proves served-to-clean-session read on the same owned key.",
+      "files": []
+    }
+  ]
+}
