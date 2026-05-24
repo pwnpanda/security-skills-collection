@@ -259,6 +259,13 @@
       "prompt": "Review a cached marketing page that varies absolute link generation by X-Forwarded-Host.",
       "expected_output": "Identifies unkeyed input vs cache key, poisons an owned cache key with a unique marker, and proves served-to-clean-session read on the same owned key.",
       "files": []
+    },
+    {
+      "id": "email-splitting-and-template",
+      "skill": "email-testing",
+      "prompt": "Review a B2B signup flow that auto-joins users to a tenant by email domain, and a welcome-email template that interpolates the supplied address.",
+      "expected_output": "Plans splitting-the-atom payloads (encoded-word, punycode generators, quoted local-parts) against the domain-allowlist parser, plans CRLF and Unicode-line-separator payloads against the SMTP builder, and tests subaddressing with template-engine markers (e.g. victim+{{7*7}}@target) - all proven against owned mailboxes only.",
+      "files": []
     }
   ]
 }
