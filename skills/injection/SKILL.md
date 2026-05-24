@@ -52,6 +52,13 @@ OWASP mapping: A1:2017 Injection, A03:2021 Injection, A05:2025 Injection.
   objects, nulls, and alternate content types where the app already supports them.
 - Check whether allowlists are applied before or after aliases, joins,
   projections, or framework-specific expansion.
+- HTTP Parameter Pollution: send the same parameter name multiple times (in
+  query string, body, or split across both) and check which value the
+  validator sees vs which value the sink sees. Frameworks vary - first-wins
+  (Tomcat, Express), last-wins (PHP, ASP.NET), concat-comma (multiple
+  frameworks), or array-treated. Mismatches between layers (CDN, proxy, app,
+  ORM) are the bug; e.g. validator inspects the first occurrence while the
+  SQL builder concatenates all occurrences.
 
 ## Safe Validation
 

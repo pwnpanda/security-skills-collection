@@ -70,9 +70,20 @@ confusion that grants more than the user intended.
 - For social-login account linking, attempt to register an attacker IdP
   identity for a victim email and check whether the link binds without
   re-verification.
-- For SAML, check SignedInfo coverage, comment-truncation bypasses,
-  XSW (XML signature wrapping), audience restriction, and recipient
-  validation.
+- For SAML, look at four specific classes:
+  - **XSW (XML Signature Wrapping)**: the assertion is signed, but the
+    parser reads a different unsigned assertion. Wrap the signed
+    assertion in an `<Extensions>` or comment block, then inject an
+    attacker-controlled assertion as the body. Eight published XSW
+    variants per Mainka/Somorovsky.
+  - **Comment truncation**: NameID like `victim@target.com<!--
+    -->@evil.example` may be canonicalised one way for signature and
+    another for application read - the app sees `victim@target.com`
+    while the signed value is `victim@target.com<!---->@evil.example`.
+  - **Audience/recipient/issuer validation**: signed assertion meant
+    for one SP accepted by another; issuer not pinned per connection.
+  - **SignedInfo coverage**: signature covers Assertion but not
+    Response, or covers `Conditions` but not `Subject`.
 - For device flow, check whether the user-code namespace is large
   enough and whether the polling endpoint rate-limits.
 

@@ -73,6 +73,16 @@ do with it later. The validator/storage/processor disagreement is the bug.
   external entity references, font/template fetches that hit the network.
 - For storage: check whether files are served from an executable origin
   (same as the app) vs a sandboxed origin (different domain).
+- **MIME sniffing / content-type confusion**: browsers and downstream
+  services may sniff the actual content type, ignoring the declared one.
+  Upload a polyglot or HTML-shaped file with an image extension; if the
+  asset host serves with `Content-Type: image/png` but no
+  `X-Content-Type-Options: nosniff`, the browser may interpret the bytes
+  as HTML and execute embedded script. Test storage that serves user
+  files from the same origin as the application (cookie-bound) - the
+  combination of MIME sniffing and same-origin serving turns an upload
+  into stored XSS. Cloud storage with strict content-type and
+  `X-Content-Type-Options: nosniff` blocks this path.
 
 ## Safe Validation
 

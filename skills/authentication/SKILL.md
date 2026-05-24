@@ -76,6 +76,15 @@ Failures. For protocol-specific deep dives use `../oauth-oidc/SKILL.md` and
   fallback to weaker factors.
 - Map every fallback: support login, legacy SSO, basic auth, API key,
   service account, recovery code. The weakest is the real assurance level.
+- **Cookie tossing / multi-subdomain cookie attacks**: a less-trusted
+  subdomain (`sandbox.example.com`, `dev.example.com`, a marketing
+  microsite) can set a cookie scoped to `.example.com`. The parent app
+  receives it and, if it prefers the attacker-set cookie or merges
+  values, an attacker can override session, CSRF token, or feature
+  flags. Test: from any in-scope subdomain you can write to, set a
+  cookie with the same name as the parent's session cookie scoped to
+  the parent domain; observe whether the parent's auth or CSRF logic
+  reads the attacker value.
 
 ## Safe Validation
 

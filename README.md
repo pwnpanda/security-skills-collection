@@ -60,25 +60,41 @@ Injection family:
 
 URL / redirect / cross-origin:
 
-- `open-redirect`, `cors-misconfiguration`, `host-header-injection`.
+- `open-redirect`, `cors-misconfiguration`, `host-header-injection`,
+  `crlf-injection`.
 
 Web state and auth:
 
 - `csrf`, `mass-assignment`, `prototype-pollution`, `race-conditions`,
-  `oauth-oidc`, `jwt-jose`.
+  `oauth-oidc`, `jwt-jose`, `webhook-signature-bypass`.
 
 API / files:
 
 - `graphql-api-security`, `file-upload`, `path-traversal-lfi`.
 
+Browser / DOM:
+
+- `postmessage-misuse`, `csp-bypass`, `client-side-template-injection`,
+  `xs-leaks`, `websocket-security`.
+
 Infra / protocol:
 
-- `request-smuggling`, `cache-poisoning`.
+- `request-smuggling`, `cache-poisoning`, `subdomain-takeover`.
 
 Email:
 
 - `email-testing` - splitting the email atom (RFC parser tricks), SMTP
   header injection, subaddressing SSTI, multi-address smuggling.
+
+Mobile:
+
+- `mobile-deeplink-hijack` - iOS Universal Links / Android App Links /
+  custom URL scheme hijack.
+
+AI:
+
+- `llm-prompt-injection` - direct, indirect (RAG / multimodal), and
+  tool-use injection.
 
 ## Excluded By Design
 
@@ -108,3 +124,4 @@ misconfiguration`.
 | `bounty-skills-oast-specialists` | Added oast-testing, blind-xss, blind-ssrf, blind-ssti, and client-side-path-traversal specialist skills with matching evals. | 2026-05-24 |
 | `bounty-skills-dedupe-and-backlog` | Dropped 3 logging skills, merged 7 OWASP duplicates into 3 consolidated skills (`authentication`, `vulnerable-components`, `integrity-failures`), and added 17 specialist skills covering open-redirect, csrf, file-upload, path-traversal-lfi, command-injection, sql-injection, nosql-injection, oauth-oidc, jwt-jose, cors-misconfiguration, host-header-injection, mass-assignment, graphql-api-security, prototype-pollution, race-conditions, request-smuggling, cache-poisoning. | 2026-05-24 |
 | `bounty-skills-email-testing` | Added email-testing skill covering splitting the email atom (PortSwigger 2024 research), SMTP header injection, subaddressing template injection, multi-address smuggling, and Unicode/IDNA tricks. | 2026-05-24 |
+| `bounty-skills-gap-fill` | Added 10 specialist skills from gap analysis (subdomain-takeover, crlf-injection, websocket-security, postmessage-misuse, csp-bypass, client-side-template-injection, webhook-signature-bypass, xs-leaks, llm-prompt-injection, mobile-deeplink-hijack). Folded HPP into injection, MIME sniffing into file-upload, SAML XSW/comment-truncation into oauth-oidc, cookie tossing into authentication. | 2026-05-25 |
