@@ -49,8 +49,8 @@ accepts injected operators.
 
 ## Common Patterns
 
-- Python `subprocess.run(cmd, shell=True)` or Node.js `exec` from
-  `child_process` with concatenated user input.
+- Python `subprocess.run(cmd, shell=True)` or Node.js `child_process.exec`
+  with concatenated user input.
 - Argv-list construction that still allows the called tool's own option
   parser to interpret a leading `-` or `--` in user input as a flag
   (argument injection).
@@ -84,7 +84,7 @@ accepts injected operators.
 
 - Spraying `;id` and expecting visible output. Most modern apps suppress
   stdout; use blind proof instead.
-- Reporting an argv-style subprocess call as command injection without a
-  tool-specific argument-injection vector.
+- Reporting `subprocess.run(["cmd", user_input])` (argv list, no shell) as
+  command injection without a tool-specific argument-injection vector.
 - Pivoting from confirmed RCE into internal scanning, secret retrieval,
   or persistence.

@@ -23,14 +23,13 @@ the classic example; modern Vue/React/Mustache CSTI is rarer but real.
 1. Read `../../references/scope-safety.md` and the Cross-Site Scripting
    section of `../../references/high-signal-must-tests.md`.
 2. Identify the client-side template engine: AngularJS (v1.x), Vue 2/3,
-   React (string-built JSX or React's unsafe-HTML prop paired with a
+   React (string-built JSX or `dangerouslySetInnerHTML` paired with a
    template), Mustache, Handlebars, Lit-html, Lodash `_.template`,
    nunjucks-in-browser, Liquid-in-browser.
 3. Find sinks where user input is inserted into a template expression
    context rather than into rendered text: legacy `ng-bind-html`,
    Vue `v-html`, `v-bind` to component prop that interpolates,
-   React's `dangerously-set-inner-html` prop (written here with
-   hyphens to avoid hook flagging - it is the JSX prop that injects
+   React's `dangerouslySetInnerHTML` prop (the JSX prop that injects
    raw HTML), Mustache `{{{ }}}` (unescaped), Handlebars triple-stash.
 4. Probe with engine-specific syntax: `{{7*7}}` for double-stash
    engines, `${7*7}` for template-literal engines.

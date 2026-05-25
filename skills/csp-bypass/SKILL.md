@@ -51,10 +51,9 @@ CSPs are rare.
 - The deployed CSP header (response headers; meta tags occasionally).
 - `Content-Security-Policy-Report-Only` - lower priority but useful;
   if violations would also bypass the enforced policy, report it.
-- The JS bundle for: dynamic-string runtime evaluation (the JS
-  `eval` builtin, the Function constructor with attacker-influenced
-  arguments), template engines that compile at runtime, AngularJS
-  expressions (`ng-app` v1.x).
+- The JS bundle for: `eval()`, `new Function(` calls with
+  attacker-influenced strings, template engines that compile at runtime,
+  AngularJS expressions (`ng-app` v1.x).
 - The allowlisted hosts in `script-src` and `default-src`: are any
   known to host JSONP, Angular, or wide-content user uploads?
 - The `<base>` tag: if absent, `base-uri 'self'` is needed.
