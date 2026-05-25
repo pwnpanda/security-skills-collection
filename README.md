@@ -8,6 +8,19 @@ per attack technique. Skills built around defender-only visibility (SIEM
 coverage, alert routing) are intentionally excluded because external testers
 cannot validate them.
 
+## Setup
+
+```sh
+./install.sh
+```
+
+Symlinks every skill under `skills/` into `~/.claude/skills/<name>` and
+links `~/.claude/references` at the repo's `references/` directory so
+the `../../references/...` paths inside each SKILL.md resolve. Safe to
+re-run: existing correct symlinks are skipped, conflicts are warned
+about and left untouched. `git pull` picks up changes immediately
+because targets are symlinks, not copies.
+
 ## Sources
 
 - OWASP Top Ten 2017: https://owasp.org/www-project-top-ten/2017/
